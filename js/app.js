@@ -54,7 +54,7 @@ async function displayPlayers() {
   const playersCount = data.Data.clients
   const maxPlayers = data.Data.sv_maxclients
   const queue = data.Data.vars.Kolejka
-  document.getElementById("count").innerHTML = `Obecnie graczy: ${playersCount} / ${maxPlayers} [+ ${queue}]`
+  document.getElementById("count").innerHTML = `Obecnie graczy: <span class="colored-text">${playersCount}</span> / ${maxPlayers} [+ ${queue}]`
 }
 
 displayPlayers()
