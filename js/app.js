@@ -75,6 +75,10 @@ async function displayPlayers() {
   const maxPlayers = data.Data.sv_maxclients
   const queue = data.Data.vars.Kolejka
   document.getElementById("count").innerHTML = `Obecnie graczy: <span class="colored-text">${playersCount}</span> / ${maxPlayers} [+ ${queue}]`
+
+  if (data.error) {
+    document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+  }
 }
 
 function searchPlayers() {
@@ -96,13 +100,6 @@ function updateDisplay(players) {
 document.getElementById("searchInput").addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     searchPlayers()
-  }
-
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9')
-  const data = await response.json()
-
-  if (data.error) {
-    document.getElementById("list").innerHTML = "Serwer jest wylaczony."
   }
 })
 
