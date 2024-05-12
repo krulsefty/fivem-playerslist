@@ -40,7 +40,7 @@ document.onkeydown = function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function displayPlayers() {
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9');
+  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9')
   const data = await response.json();
 
   const playersInfo = data.Data.players.map(player => ({
@@ -48,10 +48,10 @@ async function displayPlayers() {
     id: player.id
   }));
 
-  const playerListHTML = playersInfo.map(player => `${player.name} (ID: ${player.id})`)
+  const playerList = playersInfo.map(player => `${player.name} (ID: ${player.id})`)
 
-  document.getElementById("list").innerHTML = playerListHTML.join("<br>")
+  document.getElementById("list").innerHTML = playerList.join("<br>")
 }
 
-displayPlayers();
+displayPlayers()
 setInterval(displayPlayers, 1000);
