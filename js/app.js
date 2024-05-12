@@ -51,6 +51,9 @@ async function displayPlayers() {
   const playerList = playersInfo.map(player => `${player.name} (ID: ${player.id})`)
 
   document.getElementById("list").innerHTML = playerList.join("<br>")
+
+  const playersCount = data.Data.clients
+  document.getElementById("count").innerHTML = `Obecnie graczy: ${playersCount}`
 }
 
 displayPlayers()
