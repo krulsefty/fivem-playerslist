@@ -44,3 +44,45 @@ a {
   left: 1%;
   bottom: 1%;
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  left: 32.5%;
+  width: 34.5%;
+  height: 53px;
+  background: -webkit-linear-gradient(rgb(21, 19, 27), rgb(20, 18, 26));
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333232;
+}
+
+.navbar img {
+  height: 40px;
+  width: 40px;
+}
+
+.navbar button {
+  background-color: rgba(0,0,0,0);
+  border-style: none;
+  font-size: 120%;
+}
+
+#searchInput {
+  background-color: rgba(0,0,0,0);
+  font-size: 100%;
+  border-style: none;
+  outline: none;
+  color: white;
+  padding: 18px;
+  width: 1000px;
+  text-align: center;
+  font-family: Inter;
+  font-weight: bolder;
+}
