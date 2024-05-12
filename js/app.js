@@ -66,6 +66,7 @@ async function displayPlayers() {
   } catch (error) {
     console.error('Error fetching player data:', error)
     document.getElementById("list").innerHTML = "Nie udalo sie zaladowac listy gracz.<br>Sprobojemy ja wyswietlnic ponownie, moze to potrwac kilka sekund."
+    document.getElementById("count").remove()
   }
 
   const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9')
@@ -78,6 +79,7 @@ async function displayPlayers() {
 
   if (data.error) {
     document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+    document.getElementById("count").remove()
   }
 }
 
