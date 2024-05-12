@@ -22,7 +22,7 @@ body {
 }
 
 .colored-text {
-  background: -webkit-linear-gradient(#0084ff, #08c767);
+  background: -webkit-linear-gradient(#08c767, #0084ff); 
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

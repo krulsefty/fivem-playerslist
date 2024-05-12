@@ -97,6 +97,10 @@ document.getElementById("searchInput").addEventListener("keypress", function (ev
   if (event.key === "Enter") {
     searchPlayers()
   }
+
+if (data.error) {
+  document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+}
 })
 
 displayPlayers()
