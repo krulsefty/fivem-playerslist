@@ -40,13 +40,18 @@ document.onkeydown = function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function displayPlayers() {
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9')
-  const data = await response.json()
+  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9');
+  const data = await response.json();
 
-  const playerNames = data.Data.players.map(player => player.name)
+  const playersInfo = data.Data.players.map(player => ({
+    name: player.name.replace(/exilerp/i, ''),
+    id: player.id
+  }));
 
-  document.getElementById("list").innerHTML = playerNames.join("<br>")
+  const playerListHTML = playersInfo.map(player => `${player.name} (ID: ${player.id})`)
+
+  document.getElementById("list").innerHTML = playerListHTML.join("<br>")
 }
 
-displayPlayers()
-setInterval(displayPlayers, 1000)
+displayPlayers();
+setInterval(displayPlayers, 1000);
