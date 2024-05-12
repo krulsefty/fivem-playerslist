@@ -1,0 +1,39 @@
+/* s */
+/* e */
+/* f */
+/* t */
+/* y */
+
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Rubik";
+  color: #fff;
+  background: rgb(11,10,14);
+  background: linear-gradient(135deg, rgba(11,10,14,1) 0%, rgba(10,9,13,1) 56%, rgba(10,10,14,1) 100%);
+  overflow: hidden;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.colored-text {
+  background: -webkit-linear-gradient(#9fa1cf, #6064f4);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
