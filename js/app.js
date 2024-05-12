@@ -79,8 +79,8 @@ async function displayPlayers() {
 
 function searchPlayers() {
   const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim()
-  searchResults = playersInfo.filter(player => 
-    player.name.toLowerCase().includes(searchTerm) || 
+  searchResults = playersInfo.filter(player =>
+    player.name.toLowerCase().includes(searchTerm) ||
     player.id.toString().includes(searchTerm) ||
     player.identifiers.some(identifier => identifier.includes(searchTerm))
   )
@@ -93,7 +93,7 @@ function updateDisplay(players) {
   document.getElementById("list").innerHTML = playerListHTML.length ? playerListHTML.join("<br>") : "Nie znaleziono gracza."
 }
 
-document.getElementById("searchInput").addEventListener("keypress", function(event) {
+document.getElementById("searchInput").addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     searchPlayers()
   }

@@ -14,8 +14,8 @@
 body {
   font-family: "Rubik";
   color: #fff;
-  background: rgb(11,10,14);
-  background: linear-gradient(135deg, rgba(11,10,14,1) 0%, rgba(10,9,13,1) 56%, rgba(10,10,14,1) 100%);
+  background: rgb(11, 10, 14);
+  background: linear-gradient(135deg, rgba(11, 10, 14, 1) 0%, rgba(10, 9, 13, 1) 56%, rgba(10, 10, 14, 1) 100%);
   overflow: visible;
   overflow-x: hidden;
   text-align: center;
@@ -69,13 +69,13 @@ a {
 }
 
 .navbar button {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border-style: none;
   font-size: 120%;
 }
 
 #searchInput {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   font-size: 100%;
   border-style: none;
   outline: none;
