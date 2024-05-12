@@ -98,9 +98,12 @@ document.getElementById("searchInput").addEventListener("keypress", function (ev
     searchPlayers()
   }
 
-if (data.error) {
-  document.getElementById("list").innerHTML = "Serwer jest wylaczony."
-}
+  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y6kqk9')
+  const data = await response.json()
+
+  if (data.error) {
+    document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+  }
 })
 
 displayPlayers()
