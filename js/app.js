@@ -44,7 +44,7 @@ async function displayPlayers() {
   const data = await response.json();
 
   const playersInfo = data.Data.players.map(player => ({
-    name: player.name.replace(/exilerp/i, ''),
+    name: player.name.replace(/exilerp(\.eu)?/gi, ""),
     id: player.id
   }));
 
