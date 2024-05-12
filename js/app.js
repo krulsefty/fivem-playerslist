@@ -48,6 +48,8 @@ async function displayPlayers() {
     id: player.id
   }));
 
+  playersInfo.sort((a, b) => a.id - b.id)
+
   const playerList = playersInfo.map(player => `${player.name} (ID: ${player.id})`)
   document.getElementById("list").innerHTML = playerList.join("<br>")
 
