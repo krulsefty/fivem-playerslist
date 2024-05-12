@@ -39,10 +39,8 @@ a {
 }
 
 #copyright {
-  opacity: 0.5
-}
-
-footer {
+  opacity: 0.5;
   position: fixed;
-  top: 97%;
+  left: 1%;
+  bottom: 1%;
 }
