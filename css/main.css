@@ -37,3 +37,7 @@ a {
   color: white;
   text-decoration: none;
 }
+
+#copyright {
+  opacity: 0.5
+}
