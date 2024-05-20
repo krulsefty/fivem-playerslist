@@ -56,6 +56,11 @@ async function displayPlayers() {
       identifiers: player.identifiers.map(identifier => identifier.toLowerCase())
     }))
 
+    if (data.error) {
+      document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+      document.getElementById("count").remove()
+    }
+
     playersInfo.sort((a, b) => a.id - b.id)
 
     if (searchResults.length > 0) {
@@ -76,11 +81,6 @@ async function displayPlayers() {
   const maxPlayers = data.Data.sv_maxclients
   const queue = data.Data.vars.Kolejka
   document.getElementById("count").innerHTML = `Obecnie graczy: <span class="colored-text">${playersCount}</span> / ${maxPlayers} [+ ${queue}]`
-
-  if (data.error) {
-    document.getElementById("list").innerHTML = "Serwer jest wylaczony."
-    document.getElementById("count").remove()
-  }
 }
 
 function searchPlayers() {
