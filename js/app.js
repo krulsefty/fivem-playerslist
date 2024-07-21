@@ -44,7 +44,7 @@ let searchResults = []
 
 async function displayPlayers() {
   try {
-    const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/zko4r9')
+    const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y5k9om')
     if (!response.ok) {
       throw new Error('Failed to fetch player data')
     }
@@ -74,7 +74,7 @@ async function displayPlayers() {
     document.getElementById("count").remove()
   }
 
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/zko4r9')
+  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y5k9om')
   const data = await response.json()
 
   const playersCount = data.Data.clients
