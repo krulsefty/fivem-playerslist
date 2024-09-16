@@ -86,3 +86,34 @@ a {
   font-family: Inter;
   font-weight: bolder;
 }
+
+.sorting {
+  color: #fff;
+  padding: 7px;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 575;
+  background: -webkit-linear-gradient(rgb(21, 19, 27), rgb(20, 18, 26));
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333232;
+  cursor: pointer;
+  
+}
+
+#list-container {
+  width: 25%;
+  margin: 0 auto;
+}
+
+#list {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-style: solid;
+  border-image: repeating-linear-gradient(90deg, white 0%, white 15px, transparent 15px, transparent 30px) 1;
+  border-right: 0px;
+  border-left: 0px;
+  padding: 10px;
+  margin: 20px 0;
+}
