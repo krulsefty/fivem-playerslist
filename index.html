@@ -17,16 +17,26 @@
 </head>
 
 <body>
-  <div class="navbar">
+  <div class="navbar" id="dupa">
     <img
       src="https://cdn.discordapp.com/avatars/1064407842045558845/c5a1aab6f4f713442e6c8d2845f46143.png"
       alt="Logo" />
     <input type="text" id="searchInput" placeholder="Szukaj graczy... (dc id/hex/nick etc.)">
     <button onclick="searchPlayers()">🔎</button>
   </div>
+
   <h1>Lista graczy <span class="colored-text">ExileRP</span></h1>
   <h2 id="count"></h2>
-  <p id="list"></p>
+
+  <div id="sort">
+    <h3>Kolejnosc sortowania:</h3>
+    <button class="sorting" onclick="SortButtonAbc()">Alfabetyczna</button>
+    <button class="sorting" onclick="SortButtonId()">ID od najnizszego</button>
+  </div>
+
+  <div id="list-container">
+    <p id="list" class="player-list"></p>
+  </div>
 </body>
 
 <footer>
