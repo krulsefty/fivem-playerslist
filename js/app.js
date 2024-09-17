@@ -53,7 +53,7 @@ async function displayPlayers() {
 
     playersInfo = data.Data.players.map(player => ({
       name: `${player.name.replace(/exilerp(\.eu)?/gi, '')}`,
-      id: `<span class="colored-text">${player.id}</span>`,
+      id: player.id,
       identifiers: player.identifiers.map(identifier => identifier.toLowerCase())
     }))
 
@@ -111,7 +111,7 @@ function SortButtonId() {
 }
 
 function updateDisplay(players) {
-  const playerListHTML = players.map(player => `${player.name} (ID: ${player.id})`)
+  const playerListHTML = players.map(player => `${player.name} (ID: <span class="colored-text">${player.id}</span>)`)
   document.getElementById("list").innerHTML = playerListHTML.length ? playerListHTML.join("<br>") : "Nie znaleziono gracza."
 }
 
@@ -122,4 +122,4 @@ document.getElementById("searchInput").addEventListener("keypress", function (ev
 })
 
 displayPlayers()
-setInterval(displayPlayers, 10000)
+setInterval(displayPlayers, 5000)
