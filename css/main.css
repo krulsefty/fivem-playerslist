@@ -145,3 +145,7 @@ a {
   z-index: 100;
   white-space: nowrap;
 }
+
+#and {
+  font-size: 75%;
+}
