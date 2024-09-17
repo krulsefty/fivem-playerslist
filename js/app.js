@@ -123,4 +123,3 @@ document.getElementById("searchInput").addEventListener("keypress", function (ev
 
 displayPlayers()
 setInterval(displayPlayers, 1000)
-
