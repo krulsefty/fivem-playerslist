@@ -113,7 +113,8 @@ a {
   border-top: 2px solid white;
   border-bottom: 2px solid white;
   border-style: solid;
-  border-image: repeating-linear-gradient(90deg, white 0%, white 15px, transparent 15px, transparent 30px) 1;
+  /* border-image: repeating-linear-gradient(90deg, white 0%, white 15px, transparent 15px, transparent 30px) 1; */
+  border-image: repeating-linear-gradient(90deg, #08c767 0%, #0084ff 100%) 1;
   border-right: 0px;
   border-left: 0px;
   padding: 10px;
