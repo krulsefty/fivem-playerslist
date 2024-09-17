@@ -4,35 +4,35 @@
 // t
 // y
 
-// document.addEventListener("contextmenu", function (e) {
-//   e.preventDefault()
-// })
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault()
+})
 
-// document.onkeydown = function (e) {
-//   if (event.keyCode == 123) {
-//     return false
-//   }
+document.onkeydown = function (e) {
+  if (event.keyCode == 123) {
+    return false
+  }
 
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
-//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-//     return false
-//   }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+    return false
+  }
 
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
-//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-//     return false
-//   }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+    return false
+  }
 
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
-//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-//     return false
-//   }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+    return false
+  }
 
-//   if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
-//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-//     return false
-//   }
-// }
+  if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+    return false
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,11 +61,11 @@ async function displayPlayers() {
       document.getElementById("list").innerHTML = "Serwer jest wylaczony."
       document.getElementById("count").style.display = 'none'
       document.getElementById("sort").style.display = 'none'
-      document.getElementById("dupa").style.display = 'none'
+      document.getElementById("navbar").style.display = 'none'
     } else {
       document.getElementById("count").style.display = 'block'
       document.getElementById("sort").style.display = 'block'
-      document.getElementById("dupa").style.display = 'flex'
+      document.getElementById("navbar").style.display = 'flex'
     }
 
     if (currentSort === 'name') {
@@ -85,7 +85,7 @@ async function displayPlayers() {
     document.getElementById("list").innerHTML = "Nie udalo sie zaladowac listy gracz.<br>Sprobojemy ja wyswietlnic ponownie, moze to potrwac kilka sekund."
     document.getElementById("count").style.display = 'none'
     document.getElementById("sort").style.display = 'none'
-    document.getElementById("dupa").style.display = 'none'
+    document.getElementById("navbar").style.display = 'none'
   }
 
   const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y5k9om')

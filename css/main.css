@@ -39,10 +39,12 @@ a {
 }
 
 #copyright {
-  opacity: 0.5;
+  font-size: 105%;
+  color: rgba(255, 255, 255, 0.5);
   position: fixed;
   left: 1%;
   bottom: 1%;
+  font-variant: small-caps;
 }
 
 .navbar {
