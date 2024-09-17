@@ -131,10 +131,14 @@ a {
   position: absolute;
   left: 400px;
   top: -30px;
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  background: -webkit-linear-gradient(rgba(21, 19, 27, 0), rgba(20, 18, 26, 0));
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333232;
   color: white;
   padding: 5px;
-  border-radius: 5px;
   z-index: 100;
   white-space: nowrap;
 }
