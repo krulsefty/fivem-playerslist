@@ -4,35 +4,35 @@
 // t
 // y
 
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault()
-})
+// document.addEventListener("contextmenu", function (e) {
+//   e.preventDefault()
+// })
 
-document.onkeydown = function (e) {
-  if (event.keyCode == 123) {
-    return false
-  }
+// document.onkeydown = function (e) {
+//   if (event.keyCode == 123) {
+//     return false
+//   }
 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-    return false
-  }
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+//     return false
+//   }
 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-    return false
-  }
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
+//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+//     return false
+//   }
 
-  if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-    return false
-  }
+//   if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+//     return false
+//   }
 
-  if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
-    window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
-    return false
-  }
-}
+//   if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+//     window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")
+//     return false
+//   }
+// }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,9 +110,38 @@ function SortButtonId() {
   updateDisplay(playersInfo)
 }
 
+function searchPlayers() {
+  const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim()
+  searchResults = playersInfo.filter(player =>
+    player.name.toLowerCase().includes(searchTerm) ||
+    player.id.toString().includes(searchTerm) ||
+    player.identifiers.some(identifier => identifier.includes(searchTerm))
+  )
+
+  updateDisplay(searchResults)
+}
+
 function updateDisplay(players) {
-  const playerListHTML = players.map(player => `${player.name} (ID: <span class="colored-text">${player.id}</span>)`)
-  document.getElementById("list").innerHTML = playerListHTML.length ? playerListHTML.join("<br>") : "Nie znaleziono gracza."
+  const playerListHTML = players.map(player => `
+    <div class="player-item">
+      ${player.name} (ID: <span class="colored-text id-clickable" onclick="showIdentifiers(event, '${player.identifiers}')">${player.id}</span>)
+      <span class="tooltip" style="display: none;">${formatIdentifiers(player.identifiers)}</span>
+    </div>
+  `)
+  document.getElementById("list").innerHTML = playerListHTML.length ? playerListHTML.join("") : "Nie znaleziono gracza."
+}
+
+function formatIdentifiers(identifiers) {
+  return identifiers.map(id => `<div>${id}</div>`).join('')
+}
+
+function showIdentifiers(event, identifiers) {
+  const tooltip = event.target.nextElementSibling
+  const isVisible = tooltip.style.display === 'block'
+
+  document.querySelectorAll('.tooltip').forEach(el => el.style.display = 'none')
+
+  tooltip.style.display = isVisible ? 'none' : 'block'
 }
 
 document.getElementById("searchInput").addEventListener("keypress", function (event) {

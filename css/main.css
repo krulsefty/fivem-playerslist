@@ -117,3 +117,24 @@ a {
   padding: 10px;
   margin: 20px 0;
 }
+
+.player-item {
+  position: relative;
+}
+
+.id-clickable {
+  cursor: pointer;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 400px;
+  top: -30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 100;
+  white-space: nowrap;
+}
