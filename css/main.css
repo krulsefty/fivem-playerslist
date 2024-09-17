@@ -69,6 +69,11 @@ h1 {
   border-width: 1px;
   border-color: #333232;
   animation: fade-down 1s;
+  transition: scale 0.5s
+}
+
+.navbar:hover {
+  scale: 105%;
 }
 
 .navbar img {
