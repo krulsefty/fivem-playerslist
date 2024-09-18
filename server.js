@@ -24,9 +24,15 @@ app.use(session({
     secret: SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true } // Set secure: true if using HTTPS
+    cookie: {
+        secure: true, // Only send cookies over HTTPS
+        httpOnly: true, // Prevent access to the cookie via client-side JavaScript
+        sameSite: 'strict' // Prevent CSRF
+    }
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('trust proxy', 1); // Trust the first proxy
 
 // Hardcoded credentials for demonstration
 const hardcodedUser = {
