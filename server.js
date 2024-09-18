@@ -27,7 +27,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: true, // Only for HTTPS, set to true in production
+        secure: false, // Only for HTTPS, set to true in production
         httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
         sameSite: 'strict', // Prevents CSRF
         maxAge: 24 * 60 * 60 * 1000 // Optional: Set the session cookie expiry time (1 day in milliseconds)
