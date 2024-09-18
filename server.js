@@ -1,29 +1,36 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const path = require('path');
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // Use environment variables
 const SECRET_KEY = process.env.SECRET_KEY;
 
+// Middleware setup
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
     secret: SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' } // Use secure cookies in production
+    cookie: { secure: true } // Set secure: true if using HTTPS
 }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Hardcoded credentials for demonstration
 const hardcodedUser = {
-    username: pisklor,
+    username: "pisklor",
     password: process.env.PASSWORD
 };
 
@@ -35,7 +42,7 @@ app.post('/login', (req, res) => {
         req.session.user = { username }; // Store user in session
         res.json({ success: true });
     } else {
-        res.status(401).json({ success: false, message: 'Invalid username or password' });
+        res.status(401).json({ success: false, message: 'Niewłaściwe hasło lub nazwa użytkownika.' });
     }
 });
 
