@@ -17,7 +17,7 @@ const PORT = 3000;
 // Use environment variables
 const SECRET_KEY = process.env.SECRET_KEY;
 
-app.set('trust proxy', 1); // Trust the first proxy
+// app.set('trust proxy', 1); // Trust the first proxy
 
 // Middleware setup
 app.use(bodyParser.json());
