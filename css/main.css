@@ -19,6 +19,8 @@ body {
   overflow: visible;
   overflow-x: hidden;
   text-align: center;
+  background-image: url("../bg.png");
+  background-position: 0% 15%;
 }
 
 .colored-text {
