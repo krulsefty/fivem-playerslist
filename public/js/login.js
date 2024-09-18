@@ -45,19 +45,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('password').value.trim();
 
         fetch('/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              window.location.href = '/list'; // Redirect to protected page
-          } else {
-              alert('Login failed: ' + data.message);
-          }
-      })
-      .catch(err => console.error('Login error:', err));
-      
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+            credentials: 'include' // Include cookies in the request
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Redirect to protected page
+                window.location.href = '/list';
+            } else {
+                document.getElementById('loginMessage').innerText = data.message;
+            }
+        });
     });
 });
