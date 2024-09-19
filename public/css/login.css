@@ -131,6 +131,7 @@ input {
   position: absolute;
   bottom: 230px;
   right: 110px;
+  cursor: pointer;
 }
 
 .underline {
