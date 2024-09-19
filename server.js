@@ -1,13 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
-
-// Load environment variables from .env file
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,8 +16,11 @@ const PORT = 3000;
 
 // Use environment variables
 const SECRET_KEY = process.env.SECRET_KEY;
+const hardcodedUser = {
+    username: "pisklor",
+    password: process.env.PASSWORD
+};
 
-// Middleware setup
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
@@ -28,12 +30,6 @@ app.use(session({
     cookie: { secure: true } // Set secure: true if using HTTPS
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Hardcoded credentials for demonstration
-const hardcodedUser = {
-    username: "pisklor",
-    password: process.env.PASSWORD
-};
 
 // Login endpoint
 app.post('/login', (req, res) => {
