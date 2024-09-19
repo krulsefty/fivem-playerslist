@@ -40,11 +40,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('loginButton').addEventListener('click', function () {
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
+  document.getElementById('loginButton').addEventListener('click', function () {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
 
-        fetch('/login', {
+      fetch('/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
@@ -52,12 +52,10 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              window.location.href = '/list'; // Redirect to protected page
+              window.location.href = '/list';
           } else {
-              alert('Login failed: ' + data.message);
+              document.getElementById('loginMessage').innerText = data.message;
           }
-      })
-      .catch(err => console.error('Login error:', err));
-      
-    });
+      });
+  });
 });
