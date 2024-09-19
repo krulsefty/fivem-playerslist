@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              window.location.href = '/list';
+              window.location.href = '/list'
           } else {
               document.getElementById('loginMessage').innerText = data.message;
           }

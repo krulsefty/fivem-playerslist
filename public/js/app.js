@@ -41,11 +41,10 @@ document.onkeydown = function (e) {
 
 document.addEventListener("DOMContentLoaded", function () {
     // Check if user is logged in
-    fetch('/check-auth', { credentials: 'include' }) // Check authentication status
+    fetch('/check-auth', { credentials: 'include' })
         .then(response => {
             if (response.status === 401) {
-                // Redirect to login if not authenticated
-                window.location.href = '/';
+                window.location.href = '/'
             } else {
                 displayPlayers();
             }

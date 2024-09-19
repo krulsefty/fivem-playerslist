@@ -14,7 +14,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// Use environment variables
 const SECRET_KEY = process.env.SECRET_KEY;
 const hardcodedUser = {
     username: "pisklor",
@@ -27,50 +26,46 @@ app.use(session({
     secret: SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Set secure: true if using HTTPS
+    cookie: { secure: false }
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Login endpoint
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    const { username, password } = req.body
 
     if (username === hardcodedUser.username && password === hardcodedUser.password) {
-        req.session.user = { username }; // Store user in session
-        res.json({ success: true });
+        req.session.user = { username }
+        res.json({ success: true })
     } else {
-        res.status(401).json({ success: false, message: 'Niewłaściwe hasło lub nazwa użytkownika.' });
+        res.status(401).json({ success: false, message: 'Niewłaściwe hasło lub nazwa użytkownika.' })
     }
-});
+})
 
-// Middleware to check authentication
 const authenticateSession = (req, res, next) => {
     if (req.session.user) {
-        next();
+        next()
     } else {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
+        res.status(401).json({ success: false, message: 'Unauthorized' })
     }
 };
 
-// Serve login page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
-// Serve protected content
 app.get('/list', authenticateSession, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'list.html'));
+    res.sendFile(path.join(__dirname, 'public', 'list.html'))
 });
 
-// Check authentication status
 app.get('/check-auth', (req, res) => {
     if (req.session.user) {
-        res.sendStatus(200); // OK
+        res.sendStatus(200)
     } else {
-        res.sendStatus(401); // Unauthorized
+        res.sendStatus(401)
     }
-});
+})
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+    console.log(`Server running on port ${PORT}`)
+})
