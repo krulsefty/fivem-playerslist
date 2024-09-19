@@ -59,3 +59,20 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   });
 });
+
+function showPassword() {
+  var passwordField = document.getElementById('password')
+  var eyeIcon = document.getElementById('icon')
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text"
+  } else {
+    passwordField.type = "password"
+  }
+  
+  if (eyeIcon.className === "fa-solid fa-eye") {
+    eyeIcon.className = "fa-regular fa-eye"
+  } else {
+    eyeIcon.className = "fa-solid fa-eye"
+  }
+} 

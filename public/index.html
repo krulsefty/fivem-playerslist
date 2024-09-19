@@ -13,6 +13,9 @@
     <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/1064407842045558845/c5a1aab6f4f713442e6c8d2845f46143.png" />
     <link rel="stylesheet" href="css/login.css" />
     <script defer src="js/login.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
@@ -24,11 +27,14 @@
             <input id="username" type="text" placeholder="Nazwa użytkownika" required>
         </div>
 
-        <div>
+        <div class="password-field">
             <input id="password" type="password" placeholder="Hasło" required>
+            <button id="eye" onclick="showPassword()"><i class="fa-solid fa-eye" id="icon"></i></button>
         </div>
 
         <button id="loginButton">Zaloguj się</button>
+
+        <p id="passReset"><span class="underline">Zapomniałeś/aś hasła?</span> to huj cie w dupe</p>
 
         <p id="loginMessage"></p>
     </div>

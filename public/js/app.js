@@ -57,7 +57,7 @@ let currentSort = 'id'
 
 async function displayPlayers() {
   try {
-    const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y5k9om')
+    const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/j3xeya')
     if (!response.ok) {
       throw new Error('Failed to fetch player data')
     }
@@ -100,7 +100,7 @@ async function displayPlayers() {
     document.getElementById("navbar").style.display = 'none'
   }
 
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/y5k9om')
+  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/j3xeya')
   const data = await response.json()
 
   const playersCount = data.Data.clients
