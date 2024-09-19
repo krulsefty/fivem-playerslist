@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
         req.session.user = { username }; // Store user in session
         res.json({ success: true });
     } else {
-        res.status(401).json({ success: false, message: 'Invalid username or password' });
+        res.status(401).json({ success: false, message: 'Niewłaściwe hasło lub nazwa użytkownika.' });
     }
 });
 
