@@ -20,15 +20,15 @@ const hardcodedUser = {
     password: process.env.PASSWORD
 };
 
-app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(session({
     secret: SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
-}));
-app.use(express.static(path.join(__dirname, 'public')));
+    cookie: { secure: process.env.NODE_ENV === 'production' }
+}))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Login endpoint
 app.post('/login', (req, res) => {
