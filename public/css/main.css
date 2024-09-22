@@ -125,7 +125,7 @@ h1 {
 }
 
 #list-container {
-  width: 25%;
+  width: 50%;
   margin: 0 auto;
   animation: fade-up 1s;
 }
@@ -140,6 +140,7 @@ h1 {
   border-left: 0px;
   padding: 10px;
   margin: 20px 0;
+  columns: 200px;
 }
 
 .player-item {
@@ -152,9 +153,12 @@ h1 {
 
 .tooltip {
   display: none;
-  position: absolute;
+  position: fixed;
+  right: 25px;
+  top: 25px;
+  /* position: absolute;
   left: 400px;
-  top: -30px;
+  top: -30px; */
   /* background-color: rgba(0, 0, 0, 0.4); */
   background: -webkit-linear-gradient(rgba(21, 19, 27, 0), rgba(20, 18, 26, 0));
   border-radius: 5px;

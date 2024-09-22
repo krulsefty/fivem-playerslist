@@ -112,9 +112,44 @@ input {
     padding-top: 10px;
     background: -webkit-linear-gradient(rgb(11, 10, 15), rgb(12, 11, 15));
     background-clip: border-box;
-    border-style: solid;
+    border-style: none;
     border-width: 1px;
     border-color: #111118;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+#card::after, #card::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), transparent 70%, rgb(98, 64, 201));
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 50px;
+  animation: 3s spin linear infinite;
+}
+
+#card::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin{
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
 }
 
 #loginMessage {
