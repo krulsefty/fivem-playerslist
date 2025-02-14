@@ -1,119 +1,135 @@
-// s
-// e
-// f
-// t
-// y
-
 let playersInfo = []
 let searchResults = []
 let currentSort = 'id'
+let lastSuccessfulData = []
 
 async function displayPlayers() {
   try {
-    const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/d79pvj')
-    if (!response.ok) {
-      throw new Error('Failed to fetch player data')
-    }
+    const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/d79pvj`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+
     const data = await response.json()
 
     playersInfo = data.Data.players.map(player => ({
-      name: `${player.name.replace(/exilerp(\.eu)?/gi, '')}`,
+      name: player.name,
       id: player.id,
-      identifiers: player.identifiers.map(identifier => identifier.toLowerCase())
+      identifiers: formatIdentifiers(player.identifiers)
     }))
 
-    if (data.error) {
-      document.getElementById("list").innerHTML = "Serwer jest wylaczony."
+    lastSuccessfulData = playersInfo
+
+    if (data.response) {
+      document.getElementById("list").innerHTML = "Failed to load players list. We will try loading it in few seconds."
       document.getElementById("count").style.display = 'none'
       document.getElementById("sort").style.display = 'none'
       document.getElementById("navbar").style.display = 'none'
     } else {
       document.getElementById("count").style.display = 'block'
-      document.getElementById("sort").style.display = 'block'
+      document.getElementById("sort").style.display = 'flex'
       document.getElementById("navbar").style.display = 'flex'
     }
 
-    if (currentSort === 'name') {
-      playersInfo.sort((a, b) => a.name.localeCompare(b.name))
-    } else {
-      playersInfo.sort((a, b) => a.id - b.id)
-    }
+    sortPlayers()
+    updateDisplay(playersInfo)
 
-    if (searchResults.length > 0) {
-      updateDisplay(searchResults)
-    } else {
-      updateDisplay(playersInfo)
-    }
-
+    const playersCount = data.Data.clients
+    const serverName = data.Data.gametype
+    const maxPlayers = data.Data.sv_maxclients
+    const queue = data.Data.vars.Kolejka || 0
+    document.getElementById("count").innerHTML = `Obecnie graczy: <span class="colored-text">${playersCount}</span> / ${maxPlayers} [+ ${queue}]`
+    document.getElementById("title").innerHTML = `<span class="colored-text">${serverName}</span> Players List`
   } catch (error) {
-    console.error('Error fetching player data:', error)
-    document.getElementById("list").innerHTML = "Nie udalo sie zaladowac listy gracz.<br>Sprobojemy ja wyswietlnic ponownie, moze to potrwac kilka sekund."
-    document.getElementById("count").style.display = 'none'
-    document.getElementById("sort").style.display = 'none'
-    document.getElementById("navbar").style.display = 'none'
+    if (lastSuccessfulData.length > 0) {
+      updateDisplay(lastSuccessfulData)
+    } else {
+      document.getElementById("list").innerHTML = "Waiting for the list to load. This may take few seconds.<br>(it always takes some time on first load)"
+      document.getElementById("count").style.display = 'none'
+      document.getElementById("sort").style.display = 'none'
+      document.getElementById("navbar").style.display = 'none'
+    }
   }
+}
 
-  const response = await fetch('https://servers-frontend.fivem.net/api/servers/single/d79pvj')
-  const data = await response.json()
-
-  const playersCount = data.Data.clients
-  const maxPlayers = data.Data.sv_maxclients
-  const queue = data.Data.vars.Kolejka
-
-  document.getElementById("count").innerHTML = `Obecnie graczy: <span class="colored-text">${playersCount}</span> / ${maxPlayers} [+ ${queue}]`
+function sortPlayers() {
+  if (currentSort === 'name') {
+    playersInfo.sort((a, b) => a.name.localeCompare(b.name))
+  } else {
+    playersInfo.sort((a, b) => a.id - b.id)
+  }
 }
 
 function SortButtonAbc() {
   currentSort = 'name'
-  playersInfo.sort((a, b) => a.name.localeCompare(b.name))
+  sortPlayers()
   updateDisplay(playersInfo)
 }
 
 function SortButtonId() {
   currentSort = 'id'
-  playersInfo.sort((a, b) => a.id - b.id)
+  sortPlayers()
   updateDisplay(playersInfo)
 }
 
 function searchPlayers() {
   const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim()
+  if (searchTerm === "") {
+    updateDisplay(playersInfo)
+    return
+  }
   searchResults = playersInfo.filter(player =>
     player.name.toLowerCase().includes(searchTerm) ||
     player.id.toString().includes(searchTerm) ||
-    player.identifiers.some(identifier => identifier.includes(searchTerm))
+    player.identifiers.toLowerCase().includes(searchTerm)
   )
-
   updateDisplay(searchResults)
 }
 
-function updateDisplay(players) {
-  const playerListHTML = players.map(player => `
-    <div class="player-item">
-      ${player.name} (ID: <span class="colored-text id-clickable" onclick="showIdentifiers(event, '${player.identifiers}')">${player.id}</span>)
-      <span class="tooltip" style="display: none;">${formatIdentifiers(player.identifiers)}</span>
-    </div>
-  `)
-  document.getElementById("list").innerHTML = playerListHTML.length ? playerListHTML.join("") : "Nie znaleziono gracza."
-}
-
-function formatIdentifiers(identifiers) {
-  return identifiers.map(id => `<div>${id}</div>`).join('')
-}
-
-function showIdentifiers(event, identifiers) {
-  const tooltip = event.target.nextElementSibling
-  const isVisible = tooltip.style.display === 'block'
-
-  document.querySelectorAll('.tooltip').forEach(el => el.style.display = 'none')
-
-  tooltip.style.display = isVisible ? 'none' : 'block'
-}
+document.getElementById("searchInput").addEventListener("input", searchPlayers)
 
 document.getElementById("searchInput").addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     searchPlayers()
   }
 })
+
+function updateDisplay(players) {
+  const playerListHTML = players.map(player => `
+    <div id="player-card">
+      <div id="player-info">
+        <p id="player-title">${player.name}</p>
+        <p id="player-id">[${player.id}]</p>
+      </div>
+      <div id="player-identifiers">${player.identifiers}</div>
+    </div>
+  `).join("")
+
+  document.getElementById("list").innerHTML = playerListHTML || "Nie znaleziono gracza."
+}
+
+function formatIdentifiers(identifiers) {
+  let discord = identifiers.find(id => id.startsWith("discord:"))?.replace("discord:", "") || "Brak ID"
+  let steam = identifiers.find(id => id.startsWith("steam:"))?.replace("steam:", "") || "Brak HEX"
+  let license = identifiers.find(id => id.startsWith("license:"))?.replace("license:", "") || "Brak Licencji"
+
+  return `
+    <div id="top">
+      <div class="identifier" id="discord">
+        <p class="name">Discord ID:</p>
+        <p class="value">${discord}</p>
+      </div>
+      <div class="identifier" id="steam">
+        <p class="name">Steam HEX:</p>
+        <p class="value">${steam}</p>
+      </div>
+    </div>
+    <div class="identifier" id="license">
+      <p class="name">Rockstar License:</p>
+      <p class="value">${license}</p>
+    </div>
+  `
+}
 
 displayPlayers()
 setInterval(displayPlayers, 7000)
