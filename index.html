@@ -8,36 +8,63 @@
 <html lang="en">
 
 <head>
-    <title>Lista graczy ExileRP</title>
+    <title>FiveM Players List</title>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/1064407842045558845/c5a1aab6f4f713442e6c8d2845f46143.png" />
+    <!-- <link rel="icon" type="image/x-icon"
+        href="https://cdn.discordapp.com/avatars/1064407842045558845/c5a1aab6f4f713442e6c8d2845f46143.png" /> -->
     <link rel="stylesheet" href="css/main.css" />
     <script defer src="js/app.js"></script>
 </head>
 
 <body>
-    <div class="navbar" id="navbar">
-        <img src="https://cdn.discordapp.com/avatars/1064407842045558845/c5a1aab6f4f713442e6c8d2845f46143.png" alt="Logo" />
-        <input type="text" id="searchInput" placeholder="Szukaj graczy... (dc id/hex/nick etc.)">
-        <button onclick="searchPlayers()">🔎</button>
-    </div>
+        <div class="navbar" id="navbar">
+            <input type="text" id="searchInput" placeholder="Search players...">
+            <button onclick="searchPlayers()">🔎</button>
+        </div>
 
-    <h1>Lista graczy <span class="colored-text">ExileRP</span></h1>
-    <h2 id="count">Obecnie graczy: 0 / 200 [+ 0]</h2>
+        <div>
+            <h1 id="title"><span class="colored-text"></span> Players List</h1>
+            <h2 id="count">Online players: 0 / 0 [+ 0]</h2>
+        </div>
 
-    <div id="sort">
-        <h3>Kolejnosc sortowania:</h3>
-        <button class="sorting" onclick="SortButtonAbc()">Alfabetyczna</button>
-        <button class="sorting" onclick="SortButtonId()">ID od najnizszego</button>
-    </div>
+        <div id="sort">
+            <h3 id="sort-title">Sort order:</h3>
+            <div id="sort-buttons">
+                <button id="sort-option" class="sorting" onclick="SortButtonAbc()">Alphabetical</button>
+                <button id="sort-option" class="sorting" onclick="SortButtonId()">ID from lowest</button>
+            </div>
+        </div>
 
-    <div id="list-container">
-        <p id="list" class="player-list"></p>
-    </div>
+        <div id="list" class="player-list">
+            <div id="player-card">
+                <div id="player-info">
+                    <p id="player-title">username</p>
+                    <p id="player-id">[ID]</p>
+                </div>
+                <div id="player-identifiers">
+                    <div id="top">
+                        <div class="identifier" id="discord">
+                            <p class="name">Discord ID:</p>
+                            <p class="value">Discord ID Value</p>
+                        </div>
+                        <div class="identifier" id="steam">
+                            <p class="name">Steam HEX:</p>
+                            <p class="value">Steam HEX Value</p>
+                        </div>
+                    </div>
+                    <div class="identifier" id="license">
+                        <p class="name">Rockstar License:</p>
+                        <p class="value">Rockstar License Value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 
 <footer>
-    <span id="copyright">coded <span id="and">&</span> designed by <a class="colored-text" href="https://discord.com/users/783956289101365249" target="_blank">sefty</a></span>
+    <span id="copyright">coded <span id="and">&</span> designed by <a class="colored-text"
+            href="https://discord.com/users/783956289101365249" target="_blank">sefty</a></span>
 </footer>
 
 </html>
