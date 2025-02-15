@@ -100,7 +100,7 @@ document.getElementById("searchInput").addEventListener("keypress", function (ev
 
 function updateDisplay(players) {
   const playerListHTML = players.map(player => `
-    <div id="player-card" style="${player.isHighlighted ? "background:rgba(31, 98, 161, 0.37)" : ""}">
+    <div id="player-card" style="${player.isHighlighted ? "border-color:rgba(31, 98, 161, 0.37); background:rgba(26, 48, 68, 0.37)" : ""}">
       <div id="player-info">
         <p id="player-title">${player.name}</p>
         <p id="player-id">[${player.id}]</p>
